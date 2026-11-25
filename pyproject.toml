@@ -1,0 +1,63 @@
+[build-system]
+requires = ["hatchling>=1.25.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cashflow-score"
+version = "0.1.0"
+description = "Explainable informal-SME & Mobile-Money cashflow underwriting engine: seasonality-adjusted DSCR, truth-in-lending effective APR disclosures, predatory-debt guards, and 4/5ths disparate-impact fairness auditor."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.11"
+authors = [
+    { name = "Akandwanaho Ivan Alvin", email = "codesphereinnovationz@gmail.com" },
+]
+keywords = [
+    "fintech",
+    "financial-inclusion",
+    "credit-scoring",
+    "underwriting",
+    "mobile-money",
+    "fairness",
+    "dscr",
+    "sme",
+    "africa",
+]
+dependencies = []
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=8.0.0",
+    "pytest-cov>=5.0.0",
+    "ruff>=0.8.0",
+    "mypy>=1.11.0",
+]
+
+[project.scripts]
+cashflow-score = "cashflow_score.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/codesphere-u/cashflow-score"
+Repository = "https://github.com/codesphere-u/cashflow-score"
+Issues = "https://github.com/codesphere-u/cashflow-score/issues"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/cashflow_score"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py311"
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.mypy]
+python_version = "3.11"
+strict = true
+mypy_path = "src"
+packages = ["cashflow_score"]
